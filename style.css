@@ -1,0 +1,134 @@
+/* Basic reset and body styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+nav .logo h1 {
+    color: white;
+    font-size: 24px;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav ul li {
+    margin-left: 20px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 8px 12px;
+}
+nav ul li a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+/* Section styles */
+.section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #fff;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+p {
+    font-size: 18px;
+}
+
+/* Form styles */
+form {
+    margin: 0 auto;
+    max-width: 400px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Additional styles for sections */
+#home {
+    background-color: #eef;
+}
+
+#stations {
+    background-color: #e2f7e2;
+}
+
+#book {
+    background-color: #eef2e2;
+}
+
+#contact {
+    background-color: #f7e2e2;
+}
+.booked-slot {
+    background-color: #e2f0d9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.edit, .delete {
+    text-decoration: none;
+    color: #007bff;
+    margin-left: 10px;
+}
+
+.edit:hover, .delete:hover {
+    text-decoration: underline;
+}
