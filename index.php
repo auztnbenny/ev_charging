@@ -14,85 +14,99 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
-            <li><a href="#stations">Charging Stations</a></li>
-            <li><a href="#book">Book</a></li>
+            <li><a href="available_stations.php">Available Stations</a></li>
+            <li><a href="booked_slots.php">Booked Slots</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Display success message if available -->
-    <?php if (isset($_GET['message'])): ?>
-        <div class="success-message"><?php echo htmlspecialchars($_GET['message']); ?></div>
-    <?php endif; ?>
-
     <!-- Home Section -->
-    <section id="home" class="section">
-        <h2>Welcome to the EV Charging Station Slot Booking</h2>
-        <p>Book your slot with ease and manage your bookings.</p>
+    <section id="home" class="home-section">
+        <div class="home-content">
+            <h2>Welcome to the EV Charging Station</h2>
+            <p>Your one-stop solution for booking EV charging slots.</p>
+            <label for="location">Choose Your Location:</label>
+            <input type="text" id="location" placeholder="Enter your location" />
+            <button id="search-button" onclick="showStations()">Search</button>
+
+            <!-- New Text Box and Search Button -->
+            <label for="additional-location">Search for Charging Stations:</label>
+            <input type="text" id="additional-location" placeholder="Enter location for stations" />
+            <button id="additional-search-button" onclick="searchStations()">Search Stations</button>
+        </div>
     </section>
 
-    <!-- Charging Stations Section -->
-    <section id="stations" class="section">
-        <h2>Charging Stations</h2>
-        <p>Find the nearest EV charging stations around you.</p>
-    </section>
-
-    <!-- Booking Section -->
-    <section id="book" class="section">
-        <h2>Book a Charging Slot</h2>
-        <form action="booking.php" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            
-            <label for="vehicle_number">Vehicle Number:</label>
-            <input type="text" id="vehicle_number" name="vehicle_number" required>
-            
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
-
-            <label for="slot_time">Time:</label>
-            <input type="time" id="slot_time" name="slot_time" required>
-
-            <input type="submit" value="Book Slot">
-        </form>
-
-        <h3>Booked Slots</h3>
-        <div id="booked-slots">
-            <!-- PHP code to fetch and display booked slots -->
+    <!-- Available Stations Section -->
+    <section id="available-stations" class="available-stations-section">
+        <h2>Available Stations</h2>
+        <div class="station-container">
             <?php
-            // Include the database connection file
-            include 'db_connection.php';
+            // Dummy data for available stations
+            $dummy_stations = [
+                ['name' => 'Station A', 'address' => '123 Main St, Kochi, Kerala', 'availability' => 'Available'],
+                ['name' => 'Station B', 'address' => '456 Elm St, Thiruvananthapuram, Kerala', 'availability' => 'Available'],
+                ['name' => 'Station C', 'address' => '789 Oak St, Kozhikode, Kerala', 'availability' => 'Full'],
+                ['name' => 'Station D', 'address' => '101 Pine St, Kottayam, Kerala', 'availability' => 'Available'],
+                ['name' => 'Station E', 'address' => '202 Maple St, Thrissur, Kerala', 'availability' => 'Available'],
+            ];
 
-            // Fetch booked slots from the database
-            $sql = "SELECT * FROM bookings";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<div class='booked-slot'>";
-                    echo "<p>Name: " . htmlspecialchars($row['name']) . "</p>";
-                    echo "<p>Vehicle Number: " . htmlspecialchars($row['vehicle_number']) . "</p>";
-                    echo "<p>Date: " . htmlspecialchars($row['date']) . "</p>"; // Displaying the date
-                    echo "<p>Time: " . htmlspecialchars($row['slot_time']) . "</p>";
-                    echo "<a href='edit.php?id=" . $row['id'] . "' class='edit'>Edit</a>";
-                    echo "<a href='delete.php?id=" . $row['id'] . "' class='delete'>Delete</a>";
-                    echo "</div>";
-                }
-            } else {
-                echo "<p>No booked slots available.</p>";
+            // Display the dummy data
+            foreach ($dummy_stations as $station) {
+                echo "<div class='station-box'>";
+                echo "<h3>" . htmlspecialchars($station['name']) . "</h3>";
+                echo "<p>Address: " . htmlspecialchars($station['address']) . "</p>";
+                echo "<p>Availability: " . htmlspecialchars($station['availability']) . "</p>";
+                echo "<button onclick=\"location.href='booking.php?station_name=" . urlencode($station['name']) . "&station_address=" . urlencode($station['address']) . "'\">Book Slot</button>";
+                echo "<button onclick=\"viewLocation('" . htmlspecialchars($station['address']) . "')\">View Location</button>";
+                echo "</div>";
             }
-
-            $conn->close();
             ?>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <h2>Contact Us</h2>
-        <p>If you have any questions or concerns, feel free to reach out.</p>
+    <!-- Contact Information Section -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Information</h2>
+        <div class="contact-box">
+            <p>If you have any questions or need assistance, feel free to reach out to us:</p>
+            <p>Email: info@evchargingstation.com</p>
+            <p>Phone: +1 (234) 567-8901</p>
+        </div>
     </section>
 
-    <script src="app.js"></script>
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 EV Charging Station. All rights reserved.</p>
+            <p>Contact us: info@evchargingstation.com</p>
+        </div>
+    </footer>
+
+    <script>
+        function showStations() {
+            const location = document.getElementById('location').value;
+            if (location) {
+                // Redirect to the available charging stations page with the entered location
+                window.location.href = `available_stations.php?location=${encodeURIComponent(location)}`;
+            } else {
+                alert("Please enter a location.");
+            }
+        }
+
+        function searchStations() {
+            const additionalLocation = document.getElementById('additional-location').value;
+            if (additionalLocation) {
+                // Redirect to the available charging stations page with the additional location
+                window.location.href = `search_results.php?location=${encodeURIComponent(additionalLocation)}`;
+            } else {
+                alert("Please enter a location for stations.");
+            }
+        }
+
+        function viewLocation(address) {
+            alert("Viewing location for " + address);
+            // Here you can add logic to show the location on a map or redirect to a map service
+        }
+    </script>
 </body>
 </html>

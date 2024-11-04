@@ -1,34 +1,19 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ev_charging";
+// Include the database connection file
+include 'db_connection.php';
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    // Delete the booking from the database
+    $sql = "DELETE FROM bookings WHERE id='$id'";
 
-// Check if ID is set in the URL
-if (!isset($_GET['id'])) {
-    die("Error: ID not provided.");
-}
-
-// Get the ID from the URL and ensure it's an integer
-$id = intval($_GET['id']);
-
-// Delete the booking
-$sql = "DELETE FROM bookings WHERE id=$id";
-
-if ($conn->query($sql) === TRUE) {
-    // Redirect with a success message
-    header("Location: index.php?message=Slot deleted successfully");
-    exit();
-}else {
-    echo "Error deleting record: " . $conn->error;
+    if ($conn->query($sql) === TRUE) {
+        header("Location: booked_slots.php?message=Slot deleted successfully");
+        exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
 
 $conn->close();

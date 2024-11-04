@@ -6,9 +6,7 @@
 }
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+    background-color: #f4f4f4; /* Light background color for the body */
 }
 
 /* Navbar styles */
@@ -16,8 +14,11 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color: #333; /* Dark background for the navbar */
     padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 }
 nav .logo h1 {
     color: white;
@@ -39,96 +40,151 @@ nav ul li a {
     padding: 8px 12px;
 }
 nav ul li a:hover {
-    background-color: #555;
+    background-color: #555; /* Darker background on hover */
     border-radius: 4px;
 }
 
-/* Section styles */
-.section {
-    padding: 60px 20px;
-    text-align: center;
-    background-color: #fff;
-    margin: 20px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* Home Section Styles */
+.home-section {
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    height: 100vh; /* Full viewport height */
+    padding: 20px; /* Optional padding */
+    background-color: #f4f4f4; /* Optional background color */
 }
 
-h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-p {
-    font-size: 18px;
+.home-content {
+    text-align: center; /* Center text inside the content */
+    max-width: 400px; /* Optional max width for the content */
+    background-color: white; /* Optional background color for the content */
+    padding: 20px; /* Optional padding */
+    border-radius: 8px; /* Optional rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
 }
 
-/* Form styles */
-form {
-    margin: 0 auto;
-    max-width: 400px;
-    background-color: #f9f9f9;
+/* Available Stations Section Styles */
+.available-stations-section {
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #e9ecef; /* Light gray background for the section */
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 16px;
+.available-stations-section h2 {
+    text-align: center; /* Center the heading */
+    margin-bottom: 20px; /* Space below the heading */
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+.station-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the station boxes */
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* Additional styles for sections */
-#home {
-    background-color: #eef;
-}
-
-#stations {
-    background-color: #e2f7e2;
-}
-
-#book {
-    background-color: #eef2e2;
-}
-
-#contact {
-    background-color: #f7e2e2;
-}
-.booked-slot {
-    background-color: #e2f0d9;
+.station-box {
+    background-color: #d1e7dd; /* Light teal background for the station box */
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 15px;
-    margin: 10px 0;
+    margin: 10px; /* Margin creates space between each station box */
+    width: 200px; /* Fixed width for each station box */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.station-box h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.station-box p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.station-box button {
+    background-color: #28a745; /* Green background for buttons */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px; /* Smaller padding for smaller buttons */
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 14px; /* Adjust font size for buttons */
+    width: auto; /* Set width to auto to reduce button length */
+}
+
+.station-box button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Contact Section Styles */
+.contact-section {
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for the contact section */
+}
+
+.contact-section h2 {
+    text-align: center; /* Center the heading */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+.contact-box {
+    background-color: #d1e7dd; /* Light teal background for the contact box */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px auto; /* Center the contact box */
+    max-width: 400px; /* Optional max width for the contact box */
+    text-align: center; /* Center text inside the contact box */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333; /* Dark background for the footer */
+    color: white; /* White text color */
+    text-align: center; /* Center text */
+    padding: 20px 0; /* Padding for top and bottom */
+    position: relative; /* Position relative for layout */
+    bottom: 0; /* Stick to the bottom */
+    width: 100%; /* Full width */
+}
+
+.footer-content p {
+    margin: 5px 0; /* Margin for paragraphs */
+    font-size: 14px; /* Font size for footer text */
+}
+/* Booked Slots Section Styles */
+.booked-slots-section {
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for the booked slots section */
+}
+
+.booked-slots-section h2 {
+    text-align: center; /* Center the heading */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+.booked-slots-container {
+    display: flex;
+    flex-direction: column; /* Stack booked slots vertically */
+    align-items: center; /* Center the booked slots */
+}
+
+.booked-slot {
+    background-color: #d1e7dd; /* Light teal background for the booked slot */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px; /* Margin creates space between each booked slot */
+    width: 300px; /* Fixed width for each booked slot */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .edit, .delete {
+    margin-right: 10px;
     text-decoration: none;
-    color: #007bff;
-    margin-left: 10px;
+    color: #007bff; /* Blue color for links */
 }
 
 .edit:hover, .delete:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Underline on hover */
 }
